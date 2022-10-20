@@ -8,11 +8,22 @@ public class ScreenManager : MonoBehaviour
     public CanvasGroup mineScreen;
     public CanvasGroup shopScreen;
 
+    private void Awake() {
+        ShowTitleScreen();
+    }
+
+    public void ShowTitleScreen() {
+        titleScreen.alpha = 1;
+        titleScreen.interactable = true;
+        titleScreen.blocksRaycasts = true;
+    }
+
     public void HideTitleScreen()
     {
         titleScreen.alpha = 0;
         titleScreen.interactable = false;
         titleScreen.blocksRaycasts = false;
+        ToggleMineScreen();
     }
 
     public void ToggleMineScreen()

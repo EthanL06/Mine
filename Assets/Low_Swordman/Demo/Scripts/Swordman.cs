@@ -228,4 +228,10 @@ public class Swordman : PlayerController
 
     }
 
+    // Take in money amount and convert it to a string with 2 decimal places
+    public string FormatMoney(float money)
+    {
+        return money.ToString("0.00");
+    }
+
 }

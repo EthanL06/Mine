@@ -12,7 +12,7 @@ public class FloatingMoney : MonoBehaviour
     }
 
     void Mine() {
-        GameObject floatingMoney = Instantiate(floatingMoneyPrefab, new Vector3(-186.1f, 153f, 0), Quaternion.identity);
+        GameObject floatingMoney = Instantiate(floatingMoneyPrefab, new Vector3(-186.1f, 180f, 0), Quaternion.identity);
         floatingMoney.GetComponentInChildren<TextMeshProUGUI>().SetText("+$10");
         floatingMoney.transform.SetParent(canvas.transform, false);
         Destroy(floatingMoney, 0.7f);

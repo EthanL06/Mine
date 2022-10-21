@@ -7,6 +7,7 @@ public class ScreenManager : MonoBehaviour
     public CanvasGroup titleScreen;
     public CanvasGroup mineScreen;
     public CanvasGroup shopScreen;
+    public CanvasGroup constantScreen;
 
     private void Awake() {
         ShowTitleScreen();
@@ -24,6 +25,7 @@ public class ScreenManager : MonoBehaviour
         titleScreen.interactable = false;
         titleScreen.blocksRaycasts = false;
         ToggleMineScreen();
+        ToggleConstantScreen();
     }
 
     public void ToggleMineScreen()
@@ -55,6 +57,22 @@ public class ScreenManager : MonoBehaviour
             shopScreen.alpha = 0;
             shopScreen.interactable = false;
             shopScreen.blocksRaycasts = false;
+        }
+    }
+
+    public void ToggleConstantScreen()
+    {
+        if (constantScreen.alpha == 0)
+        {
+            constantScreen.alpha = 1;
+            constantScreen.interactable = true;
+            constantScreen.blocksRaycasts = true;
+        }
+        else
+        {
+            constantScreen.alpha = 0;
+            constantScreen.interactable = false;
+            constantScreen.blocksRaycasts = false;
         }
     }
 }

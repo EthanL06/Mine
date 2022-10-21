@@ -11,19 +11,11 @@ public class FloatingMoney : MonoBehaviour
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
-    void Mine() {
-        GameObject floatingMoney = Instantiate(floatingMoneyPrefab, new Vector3(-186.1f, 180f, 0), Quaternion.identity);
-        floatingMoney.GetComponentInChildren<TextMeshProUGUI>().SetText("+$10");
+    public void Show(Vector2 position, float money) {
+        GameObject floatingMoney = Instantiate(floatingMoneyPrefab, position, Quaternion.identity);
+        floatingMoney.GetComponentInChildren<TextMeshProUGUI>().SetText("+$" + money);
         floatingMoney.transform.SetParent(canvas.transform, false);
         Destroy(floatingMoney, 0.7f);
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Mine();
-        }
-    }
-
-
-    
 }

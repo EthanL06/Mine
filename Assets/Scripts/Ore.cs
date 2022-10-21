@@ -13,6 +13,7 @@ public class Ore : MonoBehaviour
     public float costToUnlock;
 
     public SliderTimer sliderTimer;
+    public FloatingMoney floatMoneyManager;
 
     private void Start() {
         sliderTimer = this.gameObject.GetComponent<SliderTimer>();
@@ -25,7 +26,6 @@ public class Ore : MonoBehaviour
 
     public void AddMoney() {
         OreManager.AddMoney(moneyValue);
+        floatMoneyManager.Show(new Vector2(-186.1f, 180f), moneyValue);
     }
-
-    
 }

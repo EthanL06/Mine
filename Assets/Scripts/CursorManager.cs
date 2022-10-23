@@ -6,6 +6,7 @@ public class CursorManager : MonoBehaviour
 {
      public Texture2D cursorTex;    
      void Awake() { 
-        Cursor.SetCursor(cursorTex, Vector2.zero, CursorMode.ForceSoftware);  
+        Vector2 hotspot = new Vector2(cursorTex.width / 2, cursorTex.height / 2);
+        Cursor.SetCursor(cursorTex, hotspot, CursorMode.ForceSoftware);  
     }
 }

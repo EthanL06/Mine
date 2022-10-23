@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SliderTimer : MonoBehaviour
 {
 
-    public float timeToEnd;
+    public float waitTime;
     public float time = 0;
     public bool isRunning;
     public OreType type;
@@ -27,9 +27,9 @@ public class SliderTimer : MonoBehaviour
         isRunning = true;
         fillImage.color = Color.white;
 
-        while (time < timeToEnd) {
+        while (time < waitTime) {
             time += Time.deltaTime;
-            slider.value = time / timeToEnd;
+            slider.value = time / waitTime;
             yield return null;
         }
 

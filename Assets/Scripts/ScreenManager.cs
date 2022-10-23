@@ -28,35 +28,54 @@ public class ScreenManager : MonoBehaviour
         ToggleConstantScreen();
     }
 
+    public void ShowMineScreen() {
+        HideShopScreen();
+        mineScreen.alpha = 1;
+        mineScreen.interactable = true;
+        mineScreen.blocksRaycasts = true;
+    }
+
+    void HideMineScreen() {
+        mineScreen.alpha = 0;
+        mineScreen.interactable = false;
+        mineScreen.blocksRaycasts = false;
+    }
+
     public void ToggleMineScreen()
     {
         if (mineScreen.alpha == 0)
         {
-            mineScreen.alpha = 1;
-            mineScreen.interactable = true;
-            mineScreen.blocksRaycasts = true;
+            ShowMineScreen();
         }
         else
         {
-            mineScreen.alpha = 0;
-            mineScreen.interactable = false;
-            mineScreen.blocksRaycasts = false;
+            HideMineScreen();
         }
     }
+
+    public void ShowShopScreen() {
+        HideMineScreen();
+        shopScreen.alpha = 1;
+        shopScreen.interactable = true;
+        shopScreen.blocksRaycasts = true;
+    }
+
+    void HideShopScreen() {
+        shopScreen.alpha = 0;
+        shopScreen.interactable = false;
+        shopScreen.blocksRaycasts = false;
+    }
+
 
     public void ToggleShopScreen()
     {
         if (shopScreen.alpha == 0)
         {
-            shopScreen.alpha = 1;
-            shopScreen.interactable = true;
-            shopScreen.blocksRaycasts = true;
+            ShowShopScreen();
         }
         else
         {
-            shopScreen.alpha = 0;
-            shopScreen.interactable = false;
-            shopScreen.blocksRaycasts = false;
+            HideShopScreen();
         }
     }
 

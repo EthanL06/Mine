@@ -5,6 +5,7 @@ using TMPro;
 public class MoneyManager : MonoBehaviour
 {
     private static double totalMoney = 0;
+
     [SerializeField] private TextMeshProUGUI moneyText;
 
     public static double AddMoney(double money) {   

@@ -3,13 +3,15 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum OreType {
-    Stone, Coal, Iron, Gold, Gem
+    Stone, Coal, Iron, Gold, Gem, Special
 }
 
 
 
 public class Ore : MonoBehaviour
 {
+    [SerializeField]
+    private static int totalFullyUpgraded = 0;
     public OreType type;
     public double moneyValue;
     public double multiplier = 1;
@@ -45,14 +47,20 @@ public class Ore : MonoBehaviour
     
 
     // Call slider timer initiate every second 
-
     public void Mine() {
         sliderTimer.Initiate();
     }
 
     public void AddMoney() {
-        MoneyManager.AddMoney(moneyValue * multiplier);
-        floatMoneyManager.Show(floatingMoneyPosition, moneyValue * multiplier);
+        double money = moneyValue * multiplier;
+
+        if (type == OreType.Special) {
+            // Random number between 1 billion and 1 trillion
+            money = Random.Range(1000000000, 1000000000000);
+        }
+
+        MoneyManager.AddMoney(money);
+        floatMoneyManager.Show(floatingMoneyPosition, money);
     }
 
     public void SetMultiplier(double multiplier) {
@@ -88,6 +96,27 @@ public class Ore : MonoBehaviour
         GameObject lockObject = this.gameObject.transform.Find("Lock").gameObject;
         lockObject.SetActive(false);
 
+        if (type == OreType.Special) {
+            sliderTimer.waitTime = 0;
+            InvokeRepeating("AddMoney", 1f, 0.3f);
+        }
+
+    }
+
+    public static void AddFullyUpgrade() {
+        Debug.Log("Total fully upgraded: " + totalFullyUpgraded);
+        totalFullyUpgraded++;
+
+        if (totalFullyUpgraded == 5) {
+            // Unlock special mine
+            GameObject specialMine = GameObject.Find("Special Mine");
+            specialMine.GetComponent<Ore>().Unlock();
+            specialMine.GetComponentInChildren<RawImage>().texture = Resources.Load<Texture>("Special");
+            // Get Gameobject with the name of ? in specialMine and set it to inactive
+            GameObject questionMark = specialMine.transform.Find("?").gameObject;
+            questionMark.SetActive(false);
+
+        }
     }
 
 }

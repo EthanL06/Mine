@@ -43,6 +43,7 @@ public class ShopManager : MonoBehaviour
             }
 
             if (progress.GetLevel() == Progress.MAX_LEVEL) {
+                Ore.AddFullyUpgrade();
                 Destroy(this);
             }
             

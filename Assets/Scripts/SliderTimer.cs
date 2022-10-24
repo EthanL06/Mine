@@ -43,4 +43,8 @@ public class SliderTimer : MonoBehaviour
     public void SetCallback(Action callback) {
         this.callback = callback;
     }
+
+    public void SetValue(float value) {
+        slider.value = value;
+    }
 }

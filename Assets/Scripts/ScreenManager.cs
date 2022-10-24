@@ -8,6 +8,7 @@ public class ScreenManager : MonoBehaviour
     public CanvasGroup mineScreen;
     public CanvasGroup shopScreen;
     public CanvasGroup constantScreen;
+    public AudioSource music;
 
     private void Awake() {
         ShowTitleScreen();
@@ -26,6 +27,26 @@ public class ScreenManager : MonoBehaviour
         titleScreen.blocksRaycasts = false;
         ToggleMineScreen();
         ToggleConstantScreen();
+        FadeInMusic();
+    }
+
+    // Fade in music volume from 0 to 0.3 over 2 seconds
+    public void FadeInMusic() {
+        music.Play();
+        StartCoroutine(FadeInMusicCoroutine());
+    }
+
+    private IEnumerator FadeInMusicCoroutine() {
+        float time = 0;
+        float duration = 5f;
+        float startVolume = 0;
+        float endVolume = 0.3f;
+
+        while (time < duration) {
+            time += Time.deltaTime;
+            music.volume = Mathf.Lerp(startVolume, endVolume, time / duration);
+            yield return null;
+        }
     }
 
     public void ShowMineScreen() {

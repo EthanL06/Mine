@@ -25,8 +25,6 @@ public class Ore : MonoBehaviour
     private GameObject slider;
     private Button button;
 
-    private bool automatic = false;
-
     private void Start() {
         isUnlocked = (type == OreType.Stone) ? true : false;
         multiplierText = GetComponentInChildren<TextMeshProUGUI>();
@@ -64,11 +62,9 @@ public class Ore : MonoBehaviour
 
     public void SetWaitTime(float waitTime) {
         sliderTimer.waitTime = waitTime;
+        sliderTimer.SetValue(1);
 
         if (waitTime == 0) {
-            automatic = true;
-            // slider.SetActive(false);
-            // button.interactable = false;
             InvokeRepeating("AddMoney", 1f, 1f);
         }
     }

@@ -23,6 +23,7 @@ public class Ore : MonoBehaviour
     public FloatingMoney floatMoneyManager;
     public Vector2 floatingMoneyPosition;
     public TextMeshProUGUI multiplierText;
+    public Animator mineAnimation;
 
     private GameObject slider;
     private Button button;
@@ -52,6 +53,7 @@ public class Ore : MonoBehaviour
     }
 
     public void AddMoney() {
+        mineAnimation.SetTrigger("Mine");
         double money = moneyValue * multiplier;
 
         if (type == OreType.Special) {
